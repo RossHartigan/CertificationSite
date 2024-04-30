@@ -1,0 +1,317 @@
+﻿@page
+@model Mining.Pages.CertificationPageModel
+@{
+}
+
+<!doctype html>
+<html>
+<head>
+
+    <title>Certification Page</title>
+
+    <style>
+        .navbar-nav .nav-item a {
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+            .navbar-nav .nav-item a:hover {
+                color: darkblue;
+                background-color: darkgrey;
+            }
+
+        .navbar {
+            margin-left: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/cert2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5rem;
+            color: #00CED1;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        .container-box {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .form-control {
+            transition: transform 0.3s;
+        }
+
+            .form-control:hover {
+                transform: scale(1.05);
+            }
+
+        button {
+            padding: 10px;
+            background-color: #00CED1;
+            color: white;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .custom-button {
+            background-color: darkgrey;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .custom-button:hover {
+                background-color: #007BFF;
+                transform: scale(1.05);
+            }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #00CED1;
+        }
+
+        .certifications {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1000px;
+            max-height: 1000px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000000;
+        }
+
+        .certifications h2 {
+                color: #00CED1;
+                font-size: 3rem;
+                text-transform: uppercase;
+            }
+
+        .certifications h3 {
+                color: white;
+                font-size: 1rem;
+            }
+
+        .certifications p {
+                color: white;
+            }
+
+        .cert-seperate {
+            margin: 20px 0;
+            padding: 10px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000000;
+            border-bottom: 1px solid white;
+        }
+
+            .cert-seperate p {
+                color: #00CED1;
+                text-decoration: none;
+            }
+
+            .cert-seperate a {
+            color: white;
+            text-decoration: none;
+        }
+
+                .cert-seperate a:hover {
+                    color: #00A79D;
+                text-decoration: underline;
+            }
+
+        .search-bar {
+            margin: 0 auto;
+            max-width: 250px;
+        }
+
+            .search-bar:hover {
+                transform: scale(1.2);
+            }
+
+    </style>
+
+<body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/HomePage">HOME PAGE</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <h1>Certifications</h1>
+
+        <div class="container-box">
+            <h2>Add New Certification:</h2>
+            <br />
+            <p>This will only work for employees who have no certification already. To update certifications check below.</p>
+            <form id="certForm" method="post" asp-page="/CertificationPage">
+                <div class="form-group">
+                    <label for="employee">EMPLOYEE:</label>
+                    <select class="form-control" id="employeeId" name="employeeId">
+                        @foreach (var employee in Model.employees)
+                        {
+                            <option value="@employee.EmployeeId">@employee.EmployeeId: @employee.Name @employee.Surname</option>                          
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">START DATE :</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate" />
+                </div>
+                <div class="form-group">
+                    <label for="endDate">END DATE :</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate" />
+                </div>
+                <div class="form-group">
+                    <label for="certName">CERTIFICATION NAME :</label>
+                    <select class="form-control" id="certName" name="certName">
+                        <option value="Fire Fighting">Fire Fighting</option>
+                        <option value="Rescue">Rescue</option>
+                        <option value="First Aid">First Aid</option>
+                        <option value="Management">Management</option>
+                        <option value="Drilling">Drilling</option>
+                        <option value="Mining">Mining</option>
+                        <option value="Excavation">Excavation</option>
+                        <option value="Demolitions">Demolitions</option>
+                        <option value="Heavy Machinery">Heavy Machinery</option>
+                        <option value="HR">HR</option>
+                        <option value="Mechanics">Mechanics</option>
+                        <option value="Surveying">Surveying</option>
+                    </select>
+                </div>
+
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <button style="margin:0 auto;" type="submit" class="btn btn-success custom-button">ADD CERTIFICATION</button>
+                    </div>
+                </div>
+            </form>
+        </div> 
+
+        <br/>
+        <br/>
+
+        <div class="search-bar">
+            <input type="text" id="employeeSearch" placeholder="Search through certifications ...">
+        </div>
+
+        <br/>
+
+        <div class="certifications">
+            <h2>All Certifications</h2>
+
+            @if(Model.certifications != null && Model.certifications.Any())
+            {
+                <div class="cert-box">
+
+                    @foreach (var x in Model.certifications)
+                    {
+
+                        DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+                        DateOnly certEnd = DateOnly.Parse(x.EndDate);
+
+                        <div class="cert-seperate">  
+
+                            <p>CERTIFICATION OWNER : <span style="color: white;">@x.CertOwner</span></p>
+                            <p>START DATE : <span style="color: white;">@x.StartDate</span></p>
+                            <p>END DATE : <span style="color: white;">@x.EndDate</span></p>
+                            <p>CERTIFICATION TYPE : <span style="color: white;">@x.CertName</span></p>
+                            <p>EMPLOYEE ID : <span style="color: white;">@x.EmployeeId</span></p>
+                        
+
+                            @if (@certEnd < @currentDate)
+                            {
+                                <p style="color:red;">CERTIFICATION STATUS : EXPIRED</p>
+                            }
+                            else if (@certEnd < @currentDate.AddDays(7))
+                            {
+                                <p style="color:red;">CERTIFICATION STATUS : Will expire in 1 week.</p>
+                            }
+                            else if (@certEnd < @currentDate.AddMonths(1))
+                            {
+                                <p style="color:orange;">CERTIFICATION STATUS : Will expire in less than 1 month</p>
+                            }
+                            else if (@certEnd < @currentDate.AddMonths(2))
+                            {
+                                <p style="color:yellow;">CERTIFICATION STATUS : Will expire in less than 2 months</p>
+                            }
+                            else
+                            {
+                                <p style="color:green;">CERTIFICATION STATUS : VALID</p>
+                            }
+
+                            <a asp-page="UpdateCertificationPage" asp-route-id="@x.CertId">Update Certification</a>
+
+                        </div>
+                        
+                    }
+                </div>
+                
+
+            }else
+            {
+                <h3>No Current Certifications</h3>
+            }
+        </div>
+
+
+</body>
+</head>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#employeeSearch").on("input", function () {
+            var searchTerm = $(this).val().toLowerCase();
+            var employees = $(".cert-seperate");
+
+            employees.each(function () {
+                var employeeName = $(this).text().toLowerCase();
+                if (employeeName.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+
+</script>

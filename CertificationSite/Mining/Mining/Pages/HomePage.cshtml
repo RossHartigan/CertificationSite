@@ -1,0 +1,106 @@
+﻿@page
+@model Mining.Pages.HomePageModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uncapped</title>
+    <style>  
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/HomePage.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5rem; 
+            color: #00CED1; 
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000; 
+        }
+
+        img {
+            width: 250px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .clickable-image {
+            text-align: left;
+        }
+
+        .btn-container {
+            text-decoration: none;
+            display: block;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-content {            
+            border: none;
+            box-shadow: none;
+            text-align: center;
+            padding: 10px;
+            padding-left: 10px;
+            padding-right:10px;
+        }
+
+        .btn-image {
+            max-width: 125%;
+        }
+
+        .btn-container:hover .btn-content {
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <h1 class="text-center">UMGEDE DRILLING</h1>
+        <hr />
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <a asp-page="SitesPage" class="btn-container">
+                    <div class="btn-content">
+                        <img src="Images/site.jpg" alt="Sites Image" class="btn-image">
+                    </div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a asp-page="ContactPage" class="btn-container">
+                    <div class="btn-content">
+                        <img src="Images/about.jpg" alt="About Image" class="btn-image">
+                    </div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a asp-page="EmployeesPage" class="btn-container">
+                    <div class="btn-content">
+                        <img src="Images/employees.jpg" alt="Employee Image" class="btn-image">
+                    </div>
+                </a>
+            </div>
+            <div class="col-6">
+                <a asp-page="CertificationPage" class="btn-container">
+                    <div class="btn-content">
+                        <img src="Images/cert.jpg" alt="Certification Image" class="btn-image">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

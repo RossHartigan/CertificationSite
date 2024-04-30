@@ -1,0 +1,170 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Register page";
+}
+
+<!DOCTYPE html>
+<html>
+<h1 style="text-align: center;">Register</h1>
+<head>
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0; 
+        }
+        .header {
+            text-align: center;
+            font-size: 10rem;
+            color: #00CED1;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            color: black;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #00CED1;
+        }
+        
+        .container-box {
+            max-width: 750px;
+            margin: 20px auto;
+            background: black;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+       
+        label {
+            color: white;
+            font-size: 17px;
+            display: block;
+        }
+
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+       
+        button {
+            width: 100%;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .custom-button {
+            background-color: darkgrey;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .custom-button:hover {
+                background-color: #007BFF; 
+                transform: scale(1.05); 
+            }
+
+        .custom-radio {
+            transform: scale(1); 
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+            .custom-radio:checked {
+                transform: scale(1);
+            }
+
+            .custom-radio:hover {
+                transform: scale(1.5);
+
+            }
+
+        .form-control {
+            transition: transform 0.3s;
+        }
+
+            .form-control:hover {
+                transform: scale(1.05);
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container-box">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" asp-page="/Login">
+                    <div class="form-group">
+                        <label for="name">NAME :</label>
+                        <input type="text" class="form-control" id="name" name="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">SURNAME :</label>
+                        <input type="text" class="form-control" id="surname" name="surname" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-MAIL :</label>
+                        <input type="text" class="form-control" id="email" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">PASSWORD :</label>
+                        <input type="password" class="form-control" id="password" name="password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="role">ROLE :</label>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input custom-radio" id="adminRole" name="userrole" value="Admin">
+                            <label class="form-check-label" for="adminRole">HR</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input custom-radio" id="userRole" name="userrole" value="User">
+                            <label class="form-check-label" for="userRole">ADMIN</label>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form method="post" asp-page="/LoginPage">
+                                <button class="btn btn-success btn-block custom-button" type="submit">REGISTER</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="get" asp-page="/LoginPage">
+                                <button class="btn btn-success btn-block custom-button">LOGIN</button>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

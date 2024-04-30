@@ -1,0 +1,1 @@
+The azure services have gone offline as my varsity has removed those subscriptions so the website is unable to access the database

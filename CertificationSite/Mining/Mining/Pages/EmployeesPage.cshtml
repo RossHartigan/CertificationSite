@@ -1,0 +1,305 @@
+﻿@page
+@model Mining.Pages.EmployeesPageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees Page</title>
+    <style>
+        .navbar-nav .nav-item a {
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+            .navbar-nav .nav-item a:hover {
+                color: darkblue;
+                background-color: darkgrey;
+            }
+
+        .navbar {
+            margin-left: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/employees2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container-box{
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5rem;
+            color: #00CED1;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #00CED1;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #00CED1;
+            color: white;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            width: 100%; 
+        }
+
+        .custom-button {
+            background-color: darkgrey;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .custom-button:hover {
+                background-color: #007BFF;
+                transform: scale(1.05);
+            }
+
+        .form-control {
+            transition: transform 0.3s;
+        }
+
+            .form-control:hover {
+                transform: scale(1.05);
+            }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .employee {
+            margin: 20px 0;
+            padding: 5px;
+            max-width: 300px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000000;
+        }
+
+            .employee h2 {
+                color: #00A79D;
+            }
+
+            .employee a {
+                color: #00A79D;
+                text-decoration: none;
+            }
+
+                .employee a:hover {
+                    color: #006F67;
+                }
+
+        
+
+        .employee-box {
+            max-height: 500px;
+            max-width: 750px;
+            overflow-y: auto;
+            margin:0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000000;
+        }
+
+
+            .employee-box h2 {
+                color: white;
+            }
+
+            .employee-box a {
+                color: #00A79D;
+                text-decoration: none;
+            }
+
+                .employee-box a:hover {
+                    color: #006F67;
+                    text-decoration:underline;
+                   
+                }
+
+        .search-bar{
+            margin:0 auto;
+            max-width: 250px;
+        }
+
+            .search-bar:hover {
+                transform: scale(1.2);
+            }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/HomePage">HOME PAGE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h1>Employees</h1>
+    <div class="container-box">
+        <h2>Add New Employee :</h2>
+        <br />
+        <form id="employeeForm" method="post" asp-page="/EmployeesPage">
+            <div class="form-group">
+                <label for="name">NAME :</label>
+                <input type="text" class="form-control" id="name" name="name" />
+            </div>
+            <div class="form-group">
+                <label for="surname">SURNAME :</label>
+                <input type="text" class="form-control" id="surname" name="surname" />
+            </div>
+            <div class="form-group">
+                <label for="siteid">SITE ID :</label>
+                <select class="form-control" id="siteid" name="siteid">
+                
+                    @for (int k = 1; k < 6; k++)
+                    {
+                        <option value="@k">@k.ToString()</option>
+                    }
+                </select>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="post" asp-page="/EmployeesPage">
+                    <button style="margin:0 auto;" type="submit" class="btn btn-success custom-button">ADD EMPLOYEE</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <br/>
+    <br />
+
+    <div class="search-bar">
+        <input type="text" id="employeeSearch" placeholder="Search for employee ...">
+    </div>
+
+    <br/>
+
+    <div class="employee-box">
+        <h2>EMPLOYEES LIST :</h2>
+        @if (Model.EmployeesList != null && Model.EmployeesList.Any())
+        {
+            @foreach (var employee in Model.EmployeesList)
+            {
+                <div class="employee employee-item">
+                    <h2>@employee.Name @employee.Surname</h2>
+                    <a asp-page="EmployeeDetailsPage" asp-route-id="@employee.EmployeeId">View Details</a>
+                </div>
+                <br />
+            }
+        }
+        else
+        {
+            <p>No employees found.</p>
+        }
+    </div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    /*function captureInput() {        
+        var siteid = parseInt($("#siteid").val());
+
+        if (isNaN(siteid)) {
+            alert("Site ID must be a valid integer.");
+            return;
+        }
+
+        var formData = {
+            name: $("#name").val(),
+            surname: $("#surname").val(),
+            siteid: siteid
+        };
+
+        $.ajax({
+            url: "/Index",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+                // Handle success response
+                console.log("Data sent successfully");
+            },
+            error: function (error) {
+                // Handle error response
+                console.error("Error sending data");
+            }
+        });
+    }*/
+    $(document).ready(function () {
+        $("#employeeSearch").on("input", function () {
+            var searchTerm = $(this).val().toLowerCase();
+            var employees = $(".employee-item");
+
+            employees.each(function () {
+                var employeeName = $(this).text().toLowerCase();
+                if (employeeName.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+
+</script>
+
+

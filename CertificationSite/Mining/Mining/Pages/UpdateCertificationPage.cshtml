@@ -1,0 +1,183 @@
+﻿@page
+@model Mining.Pages.UpdateCertificationPageModel
+@{
+}
+
+<!Doctype html>
+<html>
+<head>
+
+    <title>Certification Page</title>
+
+    <style>
+
+        .navbar-nav .nav-item a {
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+            .navbar-nav .nav-item a:hover {
+                color: darkblue;
+                background-color: darkgrey;
+            }
+
+        .container-box {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .navbar {
+            margin-left: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/cert2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5rem;
+            color: #00CED1;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #00CED1;
+        }
+
+        .container-box {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .form-control {
+            transition: transform 0.3s;
+        }
+
+            .form-control:hover {
+                transform: scale(1.05);
+            }
+
+        button {
+            padding: 10px;
+            background-color: #00CED1;
+            color: white;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .custom-button {
+            background-color: darkgrey;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .custom-button:hover {
+                background-color: #007BFF;
+                transform: scale(1.05);
+            }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+
+    </style>
+
+<body>
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/CertificationPage">CERTIFICATIONS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <h1>Update Certifications</h1>
+
+        <div class="container-box">
+            <h2>Certification Details :</h2>
+            <div class="employee-details">
+                <div class="cert-details">
+                    <h2>@Model.Certification_Details.CertOwner</h2>
+                    @if (Model.Certification_Details != null)
+                    {
+                        <p><span style="color:#00A79D"><strong>EMPLOYEE ID :</strong></span> @Model.Certification_Details.EmployeeId</p>
+                        <p><span style="color:#00A79D"><strong>CERTIFICATION ID :</strong></span> @Model.Certification_Details.CertId</p>
+                        <p><span style="color:#00A79D"><strong>CERTIFICATION NAME :</strong></span> @Model.Certification_Details.CertName</p>                        
+
+                    }
+                    else
+                    {
+                        <p><span style="color:#00A79D"><strong>CERTIFICATION STATUS :</strong></span> NO CERTIFICATIONS </p>
+                    }
+
+                    <form id="update-form" method="post" asp-page="/UpdateCertificationPage">
+                        <input type="hidden" name="action" value="update" />
+                        <input type="hidden" name="certId" value="@Model.Certification_Details.CertId" />
+                        <div class="form-group">
+                            <label for="newStartDate">NEW START DATE :</label>
+                            <input type="date" class="form-control" id="newStartDate" name="newStartDate" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for "newEndDate">NEW END DATE :</label>
+                            <input type="date" class="form-control" id="newEndDate" name="newEndDate" />
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="margin:0 auto;" type="submit" class="btn btn-success custom-button">UPDATE CERTIFICATION</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="delete-certification" method="post" asp-page="/UpdateCertificationPage">
+                        <input type="hidden" name="action" value="delete" />
+                        <input type="hidden" name="certId" value="@Model.Certification_Details.CertId" />
+                        <button style="margin:0 auto;" type="submit" class="btn btn-success custom-button">DELETE CERTIFICATION</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+</body>
+</head>
+</html>

@@ -1,0 +1,100 @@
+﻿@page
+@model Mining.Pages.SitesPageModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sites Page</title>
+    <style>
+        .navbar-nav .nav-item a {
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+            .navbar-nav .nav-item a:hover {
+                color: darkblue;
+                background-color: darkgrey;
+            }
+
+        .navbar {
+            margin-left: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/sites2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 5rem;
+            color: #00CED1;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        .mining-site {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #000000;
+        }
+
+            .mining-site h2 {
+                color: #00A79D;
+            }
+
+            .mining-site a {
+                color: #00A79D;
+                text-decoration: none;
+            }
+
+                .mining-site a:hover {
+                    color: #006F67;
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/HomePage">HOME PAGE</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h1>Mining Sites</h1>
+    @if (Model.MiningSites != null && Model.MiningSites.Any())
+    {
+        @foreach (var site in Model.MiningSites)
+        {
+            <div class="mining-site">
+                <h2>@site.SiteName</h2>
+                <a style="color:white" asp-page="SiteDetailsPage" asp-route-id="@site.SiteId">View Details</a>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No mining sites found.</p>
+    }
+</body>
+</html>
+
+
+
+
+
+

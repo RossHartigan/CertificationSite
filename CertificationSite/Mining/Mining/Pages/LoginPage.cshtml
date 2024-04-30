@@ -1,0 +1,121 @@
+﻿@page
+@model Mining.Pages.LoginPageModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Login Page</title>
+    <h1 style="text-align: center;">Login</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/Images/login.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container-box{
+            max-width: 750px;
+            margin: 0 auto;
+            background: black;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            color: black;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 2px #00CED1;
+        }
+
+        label {
+            color: white;
+            font-size: 17px;
+            display: block;
+        }
+
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .custom-button {
+            background-color: darkgrey;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .custom-button:hover {
+                background-color: #007BFF;
+                transform: scale(1.05);
+            }
+
+        .form-control {
+            transition: transform 0.3s;
+        }
+
+        .form-control:hover {
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container-box">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" asp-page="/Login">
+                    <div class="form-group">
+                        <label for="email">E-MAIL :</label>
+                        <input type="email" class="form-control" id="email" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">PASSWORD :</label>
+                        <input type="password" class="form-control" id="password" name="password" />
+                        <br/>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form method="get" asp-page="/Index">
+                                    <button class="btn btn-success btn-block custom-button">REGISTER</button>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form method="post" asp-page="/HomePage">
+                                    <button class="btn btn-success btn-block custom-button" type="submit">LOGIN</button>
+                                </form>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
